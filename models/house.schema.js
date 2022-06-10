@@ -10,4 +10,4 @@ const houseSchema = new Schema({
   longtitude: Number,
 });
 
-module.exports = mongoose.model("house", houseSchema);
+module.exports = mongoose.models.house ||   mongoose.model("house", houseSchema);

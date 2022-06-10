@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const HouseSchema = require("../models/house.schema");
+const conection = require("../utils/mongo.utils");
+
 module.exports = {
   gethouse: router.get("/", async function (req, res) {
     if (!req.query.location) {
@@ -7,6 +9,7 @@ module.exports = {
         message: "Please provide location query",
       });
     }
+    await conection()
     try {
       const house = await HouseSchema.findOne({
         location: req.query.location,

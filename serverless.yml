@@ -8,13 +8,50 @@ provider:
   runtime: nodejs14.x
 
 functions:
-  api:
+  weather:
+    handler: ./handlers/weather.handler
+    events:
+      - httpApi: 
+          path: /weather
+          method: get
+      - httpApi: 
+          path: /weather/{location}
+          method: get
+  heathCheck:
     handler: handler.handler
     events:
       - httpApi: 
-          path: /api/v1/energy
+          path: /hello
           method: get
-          cors: true
+      
+  heatloss:
+    handler: ./handlers/heatloss.handler
+    events:
+      - httpApi: 
+          path: /heatloss/calculate
+          method: post
+  heatPumps:
+    handler: /handlers/heatPumps.handler
+    events:
+      - httpApi: 
+          path: /heatPumps/{heatloss}
+          method: get
+  pumpCost:
+    handler: ./handlers/pump.handler
+    events:
+      - httpApi: 
+          path: /pump
+          method: get
+      - httpApi: 
+          path: /pump/{heatloss}
+          method: get
+      - httpApi: 
+          path: /pump/cost
+          method: get
+      - httpApi:
+          path: /pump/cost/{capacity}
+          method: get
+   
 
 
 
