@@ -11,4 +11,13 @@ functions:
   api:
     handler: handler.handler
     events:
-      - httpApi: '*'
+      - httpApi: 
+          path: /api/v1/energy
+          method: get
+          cors: true
+
+
+
+plugins:
+  - serverless-offline
+  - serverless-dotenv-plugin
